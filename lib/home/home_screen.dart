@@ -6,6 +6,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../widget/loading_indicator.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -77,8 +79,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 _controller.complete(controller);
               },
             )
-          : const Center(
-              child: CircularProgressIndicator(),
+          : Center(
+              child: MapLoadingScreen(
+                latitude: _latitude,
+                longitude: _longitude,
+              ),
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
